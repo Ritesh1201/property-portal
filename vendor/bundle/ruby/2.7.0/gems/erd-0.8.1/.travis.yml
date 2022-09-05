@@ -1,0 +1,50 @@
+language: ruby
+
+sudo: false
+
+addons:
+  apt:
+    packages:
+      - graphviz
+  chrome: stable
+
+cache:
+  - apt
+  - bundler
+
+before_install:
+  - sudo apt install -y chromium-chromedriver
+  - gem i bundler -v '<2'
+
+rvm:
+  - 2.6.0
+  - 2.0.0
+
+gemfile:
+  - gemfiles/rails_60.gemfile
+  - gemfiles/rails_52.gemfile
+  - gemfiles/rails_51.gemfile
+  - gemfiles/rails_50.gemfile
+  - gemfiles/rails_42.gemfile
+  - gemfiles/rails_41.gemfile
+  - gemfiles/rails_40.gemfile
+  - gemfiles/rails_32.gemfile
+
+matrix:
+  exclude:
+    - rvm: 2.0.0
+      gemfile: gemfiles/rails_60.gemfile
+    - rvm: 2.0.0
+      gemfile: gemfiles/rails_52.gemfile
+    - rvm: 2.0.0
+      gemfile: gemfiles/rails_51.gemfile
+    - rvm: 2.0.0
+      gemfile: gemfiles/rails_50.gemfile
+    - rvm: 2.6.0
+      gemfile: gemfiles/rails_42.gemfile
+    - rvm: 2.6.0
+      gemfile: gemfiles/rails_41.gemfile
+    - rvm: 2.6.0
+      gemfile: gemfiles/rails_40.gemfile
+    - rvm: 2.6.0
+      gemfile: gemfiles/rails_32.gemfile
