@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "/dashboard" => 'dashboard#index', as: :dashboard
+  
   resources :properties
   # get 'public/index'
   devise_for :users, controllers: { registrations: "users/registrations" } 
