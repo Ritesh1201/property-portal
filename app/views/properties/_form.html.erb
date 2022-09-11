@@ -1,47 +1,52 @@
 <%= form_with(model: property, local: true) do |form| %>
-  <% if property.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
+  <%= render "layouts/validation", item: @property %>
 
-      <ul>
-        <% property.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :address %>
-    <%= form.text_field :address %>
+    <%= form.text_field :address, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price %>
+  <div class="form-group">
+    <%= form.label :price, "Total Price (for sale) / Monthly Price (rental)" %>
+    <%= form.number_field :price, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :rooms %>
-    <%= form.number_field :rooms %>
+    <%= form.number_field :rooms, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :parking_spaces %>
-    <%= form.number_field :parking_spaces %>
+    <%= form.number_field :parking_spaces, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
+    <%= form.label :for_sale %>
+    <%= form.select :for_sale, options_for_select({"Yes" => true, "No" => false}, @property.for_sale), class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :details %>
+    <%= form.text_area :details, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
     <%= form.label :image %>
-    <%= form.text_field :image %>
+    <%= form.file_field :image, class: "form-control" %>
+    <%= form.hidden_field :image_cache %>
+
+    <% if @property.image.present? %>
+      <%= image_tag @property.image.url, class: "mt-4", :size => "260x180" %>
+    <% end %>  
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group"> 
+    <%= form.submit "Save Property", class: "btn btn-lg btn-success" %>
   </div>
 <% end %>

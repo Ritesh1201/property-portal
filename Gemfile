@@ -61,3 +61,15 @@ gem 'devise'
 
 # mail confirmation
 gem "letter_opener", group: :development
+
+# Carrierwave
+gem 'carrierwave', '~> 1.0'
+gem 'fog', '~> 1.37.0'
+
+# image resizing
+gem 'mini_magick'
+
+# Bootstrap
+gem 'bootstrap', '~> 4.0.0'
+gem 'jquery-rails'
+gem 'devise-bootstrap-views', '~> 1.0'
