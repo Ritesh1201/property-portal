@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get "/dashboard" => 'dashboard#index', as: :dashboard
   get "/profile/:id" => 'dashboard#profile', as: :profile
+  post "/user/message" => "properties#user_email", as: :user_email
   
   root to: 'public#index'
   # get 'public/index'

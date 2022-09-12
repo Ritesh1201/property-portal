@@ -62,6 +62,22 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def user_email
+    # trigger email send
+    user_id =  params[:user_id]
+    first_name = params[:first_name]
+    last_name = params[:last_name]
+    email = params[:email]
+    message = params[:message]
+
+    ContactMailer.user_email( user_id, first_name, last_name, email, message ).deliver_now
+
+    # response to script
+    respond_to do |format|
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_property
@@ -74,6 +90,6 @@ class PropertiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def property_params
-      params.require(:property).permit(:name, :address, :price, :rooms, :parking_spaces, :for_sale, :details, :image, :image_cache)
+      params.require(:property).permit(:name, :address, :price, :rooms, :parking_spaces, :for_sale, :available_date, :details, :image, :image_cache)
     end
 end

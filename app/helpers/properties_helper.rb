@@ -10,6 +10,6 @@ module PropertiesHelper
 
   def property_image(property)
     img = property.image.present? ? property.image.url : "placeholder.jpg"
-    image_tag img, class: "property-image", :size => "1100x400"
+    image_tag img, class: "property-image", :size => "1303x580"
   end
 end

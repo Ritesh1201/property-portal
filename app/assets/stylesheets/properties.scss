@@ -16,14 +16,14 @@
 }
 
 .property-main-photo {
-  height: 500px;
+  height: 600px;
   background-size: cover;
-  margin-top: 100px;
-  margin-left: 100px;
+  margin-bottom: 40px;
+  background-position-y: center;
 }
 
 #prop-details {
-  height: 150px;
+  height: 160px;
   overflow: hidden;
 
   &.open {
