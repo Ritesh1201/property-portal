@@ -8,11 +8,11 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
       <% if user_signed_in? %>
-        <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
+        <%= link_to "Dashboard", properties_path, class: "nav-link" %>
       <% else %>  
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       <% end %>
-      </li>
+      <%# </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Latest</a>
       </li>
@@ -25,28 +25,19 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">News</a>
+        <a class="nav-link" href="#">Blog</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Advertising</a>
-      </li>
+      </li> %>
+    </ul>
 
       <% if user_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "nav-link" %>
-        </li>
+        <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-secondary float-sm-right" %>
       <% else %>
-        <li class="nav-item">
-          <%= link_to "Log In", new_user_session_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
-        </li>
+        <%= link_to "Log In", new_user_session_path, class: "btn btn-secondary mr-2 float-sm-right" %>
+        <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success float-sm-right" %>
       <% end %>  
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </div>
 </nav>
