@@ -1,1 +1,12 @@
-<p><%= @user.full_name %></p>
+<div class="row">
+  <div class="col-2">
+    <%= image_tag(@user.image.url, alt: 'Image', class:"rounded-circle mr-3", width: "80px", height: "80px") %>
+  </div>
+  <div class="col-10">
+    <p>Full Name: <%= @user.full_name %></p>
+    <p>Email: <%= @user.email %></p>
+    <p>Contact Number: <%= @user.contact_number %></p>
+    <p>Role: <%= @user.role %></p>
+    <p>Company: <%= @user.company %></p>
+  </div>
+</div>  

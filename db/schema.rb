@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_13_111831) do
+ActiveRecord::Schema.define(version: 2022_09_14_125756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2022_09_13_111831) do
     t.text "details"
     t.boolean "for_sale"
     t.datetime "available_date"
+    t.boolean "status", default: false
     t.index ["user_id"], name: "index_properties_on_user_id"
   end
 
