@@ -6,9 +6,15 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
       <% if user_signed_in? %>
-        <%= link_to "Dashboard", properties_path, class: "nav-link" %>
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        <li>
+          <%= link_to "Dashboard", properties_path, class: "nav-link" %>
+        </li>
+        <%= image_tag(current_user.image.url, alt: 'Image', class:"rounded-circle mr-2", width: "40px", height: "40px") %>
+        <li class="mt-2">
+          <span class="text-white">logged in as : <b><%= "#{current_user.email} (#{current_user.role})" %></b></span>
+        </li>
       <% else %>  
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       <% end %>

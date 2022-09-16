@@ -47,6 +47,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
+    @show_sidebar = true
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :contact_number, :company, :url, :image, :image_cache])
   end
 

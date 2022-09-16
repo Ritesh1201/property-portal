@@ -1,11 +1,12 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :create, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
   before_action :set_sidebar, except: [:show]
 
   # GET /properties or /properties.json
   def index
-    @properties = Property.all
+    @properties = current_user.properties
+    @properties_for_buyer = Property.where(status: false)
   end
 
   # GET /properties/1 or /properties/1.json
@@ -41,15 +42,20 @@ class PropertiesController < ApplicationController
 
   # PATCH/PUT /properties/1 or /properties/1.json
   def update
-    respond_to do |format|
-      if @property.update(property_params)
-        format.html { redirect_to property_url(@property), notice: "Property was successfully updated." }
-        format.json { render :show, status: :ok, location: @property }
+    if current_user.role == "seller"
+        respond_to do |format|
+          if @property.update(property_params)
+            format.html { redirect_to property_url(@property), notice: "Property was successfully updated." }
+            format.json { render :show, status: :ok, location: @property }
+          else
+            format.html { render :edit, status: :unprocessable_entity }
+            format.json { render json: @property.errors, status: :unprocessable_entity }
+          end
+        end
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @property.errors, status: :unprocessable_entity }
-      end
-    end
+        flash[:alert] = "You are not authorize"
+        redirect_back(fallback_location: root_path) 
+    end  
   end
 
   # DELETE /properties/1 or /properties/1.json
@@ -78,6 +84,12 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def property_update
+    @property = Property.find(params[:format])
+    @property.update_attributes(status: true)
+    redirect_back(fallback_location: root_path)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_property
@@ -90,6 +102,6 @@ class PropertiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def property_params
-      params.require(:property).permit(:name, :address, :price, :rooms, :parking_spaces, :for_sale, :available_date, :details, :image, :image_cache)
+      params.require(:property).permit(:name, :address, :price, :rooms, :parking_spaces, :for_sale, :available_date, :status, :details, :image, :image_cache)
     end
 end
