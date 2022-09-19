@@ -73,3 +73,6 @@ gem 'mini_magick'
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'devise-bootstrap-views', '~> 1.0'
+
+# Amoeba
+gem 'amoeba'

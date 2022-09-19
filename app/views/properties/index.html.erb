@@ -56,7 +56,6 @@
           <td><%= property.price %></td>
           <td><%= property.rooms %></td>
           <td><%= link_to "Buy", property_update_path(property.id), method: :patch, remote: true %></td>
-          <%# <td><button class="btn btn-info" id="property-update">Buy</button></td> %>
           <td><%= link_to 'Show', property %></td>
         </tr>
       <% end %>
