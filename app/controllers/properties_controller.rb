@@ -86,8 +86,20 @@ class PropertiesController < ApplicationController
 
   def property_update
     @property = Property.find(params[:format])
-    @property.update_attributes(status: true)
+    @dup_property = @property.amoeba_dup
+    @dup_property.save
+    @dup_property.update_attributes(status: true, user_id: current_user.id)
     redirect_back(fallback_location: root_path)
+  end
+
+  def property_buy
+    @properties = current_user.properties.where(status: true)
+  end
+
+  def copy_property
+    my_property = current_user.properties.find(params[:id])
+    my_property.amoeba_dup
+    my_property.save
   end
 
   private
