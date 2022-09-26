@@ -1,0 +1,24 @@
+<%#= select_tag :name, options_for_select(properties.pluck(:name), selected: params[:name]) , id: "prop-find" %>
+<%#= select_tag (:option, options_for_select(@properties)), id: 'find-prop' %>
+<%#= options_for_select: properties, id: 'find-prop' %>
+<div class="row">
+  <div class="col-3 test">
+    <% @properties.each do |property| %>
+      <tr>
+        <td><%= link_to "#{property.name}", property %></td>
+      </tr>
+    <% end %>
+  </div>
+</div>
+
+
+<%# <script>
+$("#find-prop").on("click", function(){
+    var property_id = $(this).val()
+    $.ajax({
+      url: "/find_property",
+      method: "GET",
+      data: { property_id: property_id}
+    })
+  })
+</script> %>

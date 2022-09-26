@@ -89,6 +89,7 @@ class PropertiesController < ApplicationController
     @dup_property = @property.amoeba_dup
     @dup_property.save
     @dup_property.update_attributes(status: true, user_id: current_user.id)
+    @property.update_attributes(status: true)
     redirect_back(fallback_location: root_path)
   end
 

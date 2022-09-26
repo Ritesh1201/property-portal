@@ -20,12 +20,17 @@
       <% end %>
     </ul>
 
-      <% if user_signed_in? %>
-        <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-secondary float-sm-right" %>
-      <% else %>
-        <%= link_to "Log In", new_user_session_path, class: "btn btn-secondary mr-2 float-sm-right" %>
-        <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success float-sm-right" %>
-      <% end %>  
-    </ul>
+    <% if user_signed_in? %>
+      <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-secondary float-sm-right" %>
+    <% else %>
+      <%= link_to "Log In", new_user_session_path, class: "btn btn-secondary mr-2 float-sm-right" %>
+      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success float-sm-right" %>
+    <% end %>  
   </div>
 </nav>
+
+
+
+
+
+

@@ -9,3 +9,17 @@
 .img-circle {
   border-radius: 50%;
 }
+
+.test a{
+  text-decoration: none;
+  color: darkslategrey;
+  display: block;
+  font-size: large;
+  width: 86%;
+  padding: .75rem 1rem;
+  background-color: #fffefefd;
+  border-color: #ffffff1a;
+  border-left: 1px solid #ffffff1a;
+  border-right: 1px solid #ffffff1a;
+  border-radius: 3px;
+}

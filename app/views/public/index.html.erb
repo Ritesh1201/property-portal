@@ -1,10 +1,27 @@
 <main role="main">
-
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
     <div class="container">
       <h1 class="display-4">Search for your new home today...</h1>
       <h1 class="display-5">Choose from hundreds of beautiful bungalows and apartments.</h1>
+      <%# <form class="input-group form-inline mt-2 mt-md-0"> %>
+        <%#= search_field_tag :Search, params[:search], id="prop-find" %>
+        <%#= button_tag :search, class:"btn btn-outline-success my-2 my-sm-0" %>
+      <%# </form> %>
+      <%# <div id='search-property'>
+        <form class="form-inline mt-2 mt-md-0">
+          <input class="form-control mr-sm-2 search-property" type="text" placeholder="Search" id='prop-find'>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>   %>
+
+      <div class="flex justify-end mb-1 dropdown" id="search-property">
+        <%= form_with url: properties_path, properties: @properties, method: :GET do |form| %>
+          <%= form.text_field :name, placeholder: "Search by name", value: params[:name], class: "rounded p-1 mr-sm-2", id:'prop-find' %>
+          <%#= form.button "Search", class: "btn btn-outline-success my-2 my-sm-0" %>
+        <% end %>
+      </div>
+
     </div>
   </div>
 
@@ -15,8 +32,26 @@
       </div>
     </div>    
   </section>
-
 </main>
 
+<script>
+  $("#prop-find").on("change", function(){
+    var name = $(this).val()
+    $.ajax({
+      url: "/search_property",
+      method: "GET",
+      dataType: "",
+      data: { name: name}
+    })
+  })
+</script>
+
+
+
+
+
+
+  
+  
 
 
