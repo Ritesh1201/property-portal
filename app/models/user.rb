@@ -7,9 +7,15 @@ class User < ApplicationRecord
   enum role: [:seller, :buyer]
 
   mount_uploader :image, ProfilePictureUploader
-  mount_uploader :cover_image, ProfilePictureUploader       
+  mount_uploader :cover_image, ProfilePictureUploader  
 
   has_many :properties
+
+  # Validation
+  validates :first_name, length:{in: 5..10}, presence: true
+  validates :last_name, length:{in: 5..10}, presence: true
+  validates :email , format: {with:/\A(.+)@(.+)\z/, message: "Invalid Email" }, uniqueness: { case_sensitive: false}, presence: true
+  validates :contact_number, numericality: true, length: { :minimum => 10, :maximum => 15 }, presence: true
 
   amoeba do
     enable
