@@ -1,7 +1,7 @@
 class PublicController < ApplicationController
   def index
     if current_user
-      if current_user.role == 'seller'
+      if current_user.type == 'seller'
         @properties = current_user.properties
       else
         @properties = Property.where(status: false)
