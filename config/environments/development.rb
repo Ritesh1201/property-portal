@@ -66,4 +66,6 @@ Rails.application.configure do
   # mail confirmation
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
+
+  config.webpacker.check_yarn_integrity = false
 end

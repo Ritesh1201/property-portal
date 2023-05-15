@@ -12,8 +12,8 @@ class User < ApplicationRecord
   has_many :properties
 
   # Validation
-  validates :first_name, length:{in: 5..10}, presence: true
-  validates :last_name, length:{in: 5..10}, presence: true
+  validates :first_name, length:{in: 6..10}, presence: true
+  validates :last_name, length:{in: 6..10}, presence: true
   validates :email , format: {with:/\A(.+)@(.+)\z/, message: "Invalid Email" }, uniqueness: { case_sensitive: false}, presence: true
   validates :contact_number, numericality: true, length: { :minimum => 10, :maximum => 15 }, presence: true
 
